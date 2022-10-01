@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   kutt:
     image: kutt/kutt
@@ -18,6 +16,11 @@ services:
       DB_USER: user
       DB_PASSWORD: pass
       REDIS_HOST: redis
+    depends_on:
+      redis:
+        condition: service_completed_successfully
+      postgress:
+        condition: service_completed_successfully
 
   redis:
     image: redis:6.0-alpine
