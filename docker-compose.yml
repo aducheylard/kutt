@@ -1,6 +1,7 @@
 services:
   kutt:
     image: kutt/kutt
+    network_mode: bridge
     command: ["./wait-for-it.sh", "postgres:5432", "--", "npm", "start"]
     ports:
       - "3030:3000"
@@ -15,11 +16,13 @@ services:
 
   redis:
     image: redis:6.0-alpine
+    network_mode: bridge
     volumes:
       - redis_data:/data
 
   postgres:
     image: postgres:12-alpine
+    network_mode: bridge
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
