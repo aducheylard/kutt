@@ -42,4 +42,5 @@ volumes:
 networks:
   default:
     name: bridge
+    driver: bridge
       #external: true
