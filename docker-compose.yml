@@ -1,7 +1,6 @@
 services:
   kutt:
     image: kutt/kutt
-    #network_mode: host
     depends_on:
       - postgres
       - redis
@@ -19,13 +18,11 @@ services:
 
   redis:
     image: redis:6.0-alpine
-    #network_mode: host
     volumes:
       - redis_data:/data
 
   postgres:
     image: postgres:12-alpine
-    #network_mode: host
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
