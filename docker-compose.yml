@@ -7,6 +7,7 @@ services:
       - postgres
       - redis
     command: ["./wait-for-it.sh", "postgres:5432", "--", "npm", "start"]
+    network_mode: bridge
     ports:
       - "3000:3000"
     env_file:
@@ -22,6 +23,7 @@ services:
     image: redis:6.0-alpine
     volumes:
       - redis_data:/data
+    network_mode: bridge
 
   postgres:
     image: postgres:12-alpine
@@ -31,6 +33,7 @@ services:
       POSTGRES_DB: kutt
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    network_mode: bridge
 
 volumes:
   redis_data:
