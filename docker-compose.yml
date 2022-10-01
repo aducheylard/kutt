@@ -1,9 +1,6 @@
 services:
   kutt:
     image: kutt/kutt
-    depends_on:
-      - postgres
-      - redis
     command: ["./wait-for-it.sh", "postgres:5432", "--", "npm", "start"]
     ports:
       - "3030:3000"
