@@ -16,7 +16,7 @@ services:
       DB_USER: user
       DB_PASSWORD: pass
       REDIS_HOST: redis
-    depnds_on:
+    depends_on:
       postgres:
         condition: service_completed_successfully
 
