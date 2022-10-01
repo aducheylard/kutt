@@ -3,11 +3,11 @@ version: "3"
 services:
   kutt:
     image: kutt/kutt
+    network_mode: bridge
     depends_on:
       - postgres
       - redis
     command: ["./wait-for-it.sh", "postgres:5432", "--", "npm", "start"]
-      #network_mode: bridge
     ports:
       - "3000:3000"
     env_file:
@@ -21,26 +21,20 @@ services:
 
   redis:
     image: redis:6.0-alpine
+    network_mode: bridge
     volumes:
       - redis_data:/data
-        #network_mode: bridge
 
   postgres:
     image: postgres:12-alpine
+    network_mode: bridge
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: kutt
     volumes:
       - postgres_data:/var/lib/postgresql/data
-        #network_mode: bridge
 
 volumes:
   redis_data:
   postgres_data:
-
-networks:
-  default:
-    #name: bridge
-    driver: bridge
-      #external: true
